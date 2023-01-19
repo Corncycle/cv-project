@@ -12,17 +12,33 @@ export class EditEducationCard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="information-card">
         <CardHeader
           name="Education Information"
           deletable={true}
           changeFunc={this.props.changeFunc}
           cardId={this.cardId}
         />
-        <InputField cardId={this.cardId} label="School Name" />
-        <InputField cardId={this.cardId} label="Degree" />
-        <InputField cardId={this.cardId} label="Begin" />
-        <InputField cardId={this.cardId} label="End" />
+        <InputField
+          cardId={this.cardId}
+          label="School Name"
+          changeFunc={this.props.changeFunc}
+        />
+        <InputField
+          cardId={this.cardId}
+          label="Degree"
+          changeFunc={this.props.changeFunc}
+        />
+        <InputField
+          cardId={this.cardId}
+          label="Begin"
+          changeFunc={this.props.changeFunc}
+        />
+        <InputField
+          cardId={this.cardId}
+          label="End"
+          changeFunc={this.props.changeFunc}
+        />
       </div>
     )
   }

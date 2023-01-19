@@ -6,11 +6,23 @@ import { CardHeader } from './CardHeader'
 export class EditGeneralCard extends React.Component {
   render() {
     return (
-      <div>
+      <div className="information-card">
         <CardHeader name="General" deletable={false} />
-        <InputField cardId="general" label="Name" />
-        <InputField cardId="general" label="Phone" />
-        <InputField cardId="general" label="Email" />
+        <InputField
+          cardId="general"
+          label="Name"
+          changeFunc={this.props.changeFunc}
+        />
+        <InputField
+          cardId="general"
+          label="Phone"
+          changeFunc={this.props.changeFunc}
+        />
+        <InputField
+          cardId="general"
+          label="Email"
+          changeFunc={this.props.changeFunc}
+        />
       </div>
     )
   }
@@ -19,4 +31,5 @@ export class EditGeneralCard extends React.Component {
 EditGeneralCard.propTypes = {
   cardId: PropsTypes.string,
   data: PropsTypes.any,
+  changeFunc: PropsTypes.func,
 }

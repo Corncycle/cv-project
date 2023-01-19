@@ -1,12 +1,12 @@
 import React from 'react'
 import { EditEducationCard } from './edit-components/EditEducationCard'
 import { EditGeneralCard } from './edit-components/EditGeneralCard'
+import { EditExperienceCard } from './edit-components/EditExperienceCard'
 import PropsTypes from 'prop-types'
+import { AddButton } from './edit-components/AddButton'
 
 export class EditScreen extends React.Component {
   render() {
-    console.log('im being told to render')
-    console.log(this.props)
     return (
       <div>
         <EditGeneralCard
@@ -22,6 +22,18 @@ export class EditScreen extends React.Component {
             />
           )
         })}
+        <AddButton changeFunc={this.props.changeFunc} section="education" />
+        <br></br>
+        {this.props.entryData.experience.map((ex) => {
+          return (
+            <EditExperienceCard
+              key={ex.id}
+              data={ex}
+              changeFunc={this.props.changeFunc}
+            />
+          )
+        })}
+        <AddButton changeFunc={this.props.changeFunc} section="experience" />
       </div>
     )
   }

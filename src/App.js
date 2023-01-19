@@ -13,6 +13,7 @@ export class App extends React.Component {
     this.genId = this.genId.bind(this)
     this.setAppState = this.setAppState.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
+    this.changeData = this.changeData.bind(this)
 
     this.state = {
       entryData: {
@@ -21,7 +22,7 @@ export class App extends React.Component {
           phone: '',
           email: '',
         },
-        education: [{ a: 'A', id: this.genId() }],
+        education: [],
         experience: [],
       },
     }
@@ -31,11 +32,9 @@ export class App extends React.Component {
     if (command === 'delete') {
       this.deleteCard(location)
     } else if (command === 'add') {
-      console.log('we want to add a new ' + location)
+      this.addCard(location)
     } else if (command === 'change') {
-      console.log(
-        'we want to change ' + sublocation + ' in ' + location + ' to ' + value
-      )
+      this.changeData(location, sublocation, value)
     } else {
       throw new Error('Unaccounted for command: ' + command)
     }
@@ -48,9 +47,55 @@ export class App extends React.Component {
       i += 1
     }
     const newState = produce(this.state, (draftState) => {
-      draftState.entryData.education = draftState.entryData.education
+      draftState.entryData[section] = draftState.entryData[section]
         .slice(0, i)
-        .concat(draftState.entryData.education.slice(i + 1))
+        .concat(draftState.entryData[section].slice(i + 1))
+    })
+    this.setState(newState)
+  }
+
+  addCard(location) {
+    const newState = produce(this.state, (draftState) => {
+      let emptyCard
+      if (location === 'education') {
+        emptyCard = {
+          schoolname: '',
+          degree: '',
+          begin: '',
+          end: '',
+          id: this.genId(),
+        }
+      } else if (location === 'experience') {
+        emptyCard = {
+          company: '',
+          position: '',
+          responsibilities: '',
+          begin: '',
+          end: '',
+          id: this.genId(),
+        }
+      } else {
+        throw new Error('Unknown location: ' + location)
+      }
+      draftState.entryData[location].push(emptyCard)
+    })
+    this.setState(newState)
+  }
+
+  changeData(location, sublocation, value) {
+    const newState = produce(this.state, (draftState) => {
+      let loc
+      if (location === 'general') {
+        loc = draftState.entryData.general
+      } else {
+        const [section, id] = location.split('-')
+        let i = 0
+        while (draftState.entryData[section][i].id !== id) {
+          i += 1
+        }
+        loc = draftState.entryData[section][i]
+      }
+      loc[sublocation] = value
     })
     this.setState(newState)
   }
@@ -69,7 +114,7 @@ export class App extends React.Component {
             entryData={this.state.entryData}
             changeFunc={this.setAppState}
           />
-          <PreviewScreen />
+          <PreviewScreen entryData={this.state.entryData} />
           <Sidebar />
         </div>
       </div>

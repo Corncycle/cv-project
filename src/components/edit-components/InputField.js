@@ -8,13 +8,24 @@ export class InputField extends React.Component {
 
     this.inputId =
       this.props.cardId + '-' + normalizeClassName(this.props.label)
+
+    this.editFunc = this.editFunc.bind(this)
+  }
+
+  editFunc(e) {
+    this.props.changeFunc(
+      'change',
+      this.props.cardId,
+      normalizeClassName(this.props.label),
+      e.target.value
+    )
   }
 
   render() {
     return (
       <div>
         <label htmlFor={this.inputId}>{this.props.label + ': '}</label>
-        <input id={this.inputId} type="text"></input>
+        <input id={this.inputId} type="text" onChange={this.editFunc}></input>
       </div>
     )
   }
@@ -23,4 +34,5 @@ export class InputField extends React.Component {
 InputField.propTypes = {
   cardId: PropTypes.string,
   label: PropTypes.string,
+  changeFunc: PropTypes.func,
 }
