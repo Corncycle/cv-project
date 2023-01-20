@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --standard-button-fill: #164e63;
     --standard-button-accent: #fffffb;
@@ -35,6 +39,11 @@
 
 .flex {
     display: flex
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }
 
 .hidden {
@@ -106,6 +115,11 @@
     box-shadow: 0 4px 8px 8px rgb(0 0 0 / 10%);
     flex-direction: column;
     gap: 16px;
+}
+
+.paper-preview {
+    padding: 72px 72px 48px;
+    line-height: 1.3;
 }
 
 .section-header-title {
@@ -235,4 +249,47 @@ label {
 
 .begin-end-to {
     text-align: center;
+}
+
+.pre-general-container {
+    gap: 4px;
+}
+
+.pre-general-top-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pre-general-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.pre-general-update {
+    font-weight: 300;
+}
+
+.pre-general-subtitle {
+    font-size: 1rem;
+}
+
+.pre-section-header {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.pre-card-top-container {
+    gap: 0.5rem;
+}
+
+.pre-card-name {
+    font-weight: bold;
+}
+
+.pre-card-dates {
+    font-weight: 300;
+}
+
+.pre-card-subtitle {
+    color: rgb(73, 73, 73);
 }
