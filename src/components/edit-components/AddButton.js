@@ -7,7 +7,11 @@ export class AddButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.clickFunc}>Add</button>
+    return (
+      <button className="standard-button" onClick={this.clickFunc}>
+        Add
+      </button>
+    )
   }
 }
 

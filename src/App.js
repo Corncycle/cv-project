@@ -14,8 +14,10 @@ export class App extends React.Component {
     this.setAppState = this.setAppState.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
     this.changeData = this.changeData.bind(this)
+    this.togglePreview = this.togglePreview.bind(this)
 
     this.state = {
+      previewing: false,
       entryData: {
         general: {
           name: '',
@@ -100,6 +102,12 @@ export class App extends React.Component {
     this.setState(newState)
   }
 
+  togglePreview() {
+    this.setState({
+      previewing: !this.state.previewing,
+    })
+  }
+
   genId() {
     this.currId += 1
     return this.currId.toString()
@@ -111,11 +119,18 @@ export class App extends React.Component {
         <Topbar />
         <div className="content-container">
           <EditScreen
+            className={this.state.previewing ? 'hidden' : ''}
             entryData={this.state.entryData}
             changeFunc={this.setAppState}
           />
-          <PreviewScreen entryData={this.state.entryData} />
-          <Sidebar />
+          <PreviewScreen
+            className={this.state.previewing ? '' : 'hidden'}
+            entryData={this.state.entryData}
+          />
+          <Sidebar
+            toggleFunc={this.togglePreview}
+            previewing={this.state.previewing}
+          />
         </div>
       </div>
     )

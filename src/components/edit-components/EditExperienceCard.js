@@ -12,7 +12,7 @@ export class EditExperienceCard extends React.Component {
 
   render() {
     return (
-      <div className="information-card">
+      <div className="information-card flex">
         <CardHeader
           name="Experience Information"
           deletable={true}
@@ -33,17 +33,23 @@ export class EditExperienceCard extends React.Component {
           cardId={this.cardId}
           label="Responsibilities"
           changeFunc={this.props.changeFunc}
+          size="large"
         />
-        <InputField
-          cardId={this.cardId}
-          label="Begin"
-          changeFunc={this.props.changeFunc}
-        />
-        <InputField
-          cardId={this.cardId}
-          label="End"
-          changeFunc={this.props.changeFunc}
-        />
+        <div className="begin-end-container flex">
+          <InputField
+            cardId={this.cardId}
+            label="Begin"
+            changeFunc={this.props.changeFunc}
+            size="small"
+          />
+          <span className="begin-end-to">to</span>
+          <InputField
+            cardId={this.cardId}
+            label="End"
+            changeFunc={this.props.changeFunc}
+            size="small"
+          />
+        </div>
       </div>
     )
   }

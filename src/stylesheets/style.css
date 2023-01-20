@@ -1,6 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 :root {
+    --standard-button-fill: #164e63;
+    --standard-button-accent: #fffffb;
+
+    --strong-white: #fffffb;
+    --slight-off-white: #fcfcf6;
+    --gray-backdrop: #94a3b8;
+    --light-gray-backdrop: #cbd5e1;
+    --dark-turquoise: #164e63;
+    --medium-turquoise: #0e7490;
+
+    --a: #fcfcf6;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    --text-input-width: 10rem;
+}
+
+:root::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+:root, button, input {
     box-sizing: border-box;
 }
 
@@ -8,20 +33,206 @@
     font-family: "Roboto", sans-serif;
 }
 
-.topbar-container {
-    background: bisque;
-    position: sticky;
-    top: 0;
+.flex {
+    display: flex
+}
+
+.hidden {
+    display: none;
 }
 
 .app-container {
-    background: tomato;
+    background: var(--strong-white);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar-container {
+    width: 100%;
+    color: var(--strong-white);
+    background: var(--dark-turquoise);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    gap: 10px;
+    z-index: 2;
+    box-shadow: 0 4px 8px 2px rgb(0 0 0 / 20%);
+}
+
+.topbar-image {
+    height: 3rem;
+    margin-bottom: 0.5rem;
+    filter: invert();
+}
+
+.topbar-header {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.sidebar-container {
+    background: var(--slight-off-white);
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    padding-top: 24px;
+    box-shadow: 0 4px 8px 2px rgb(0 0 0 / 20%);
+}
+
+.sidebar-title {
+    text-align: center;
+    font-weight: bold;;
+}
+
+.information-panel {
+    padding: 8px;
+    padding-top: 32px;
+    padding-bottom: 0;
+    flex: 1;
+    background: var(--gray-backdrop);
+    justify-content: center;
+}
+
+.paper-container {
+    padding: 32px;
+    padding-bottom: 32px;
+    background: white;
+    width: 800px;
+    box-shadow: 0 4px 8px 8px rgb(0 0 0 / 10%);
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-header-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-header-container {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 4px;
+}
+
+.card-header-title {
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .information-card {
-    background: plum;
-    border-radius: 10px;
-    padding: 8px;
-    margin: 10px;
+    width: 50%;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--light-gray-backdrop);
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.096);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.content-container {
+    display: flex;
+    flex: 1;
+}
+
+.standard-button {
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    padding: 0rem 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.096);
+    color: var(--standard-button-accent);
+    background: var(--standard-button-fill);
+    border: 3px solid var(--standard-button-fill);
+    cursor: pointer;
+    font-weight: bold;
+    max-width: 100px;
+}
+
+.standard-button:hover {
+    background: var(--standard-button-accent);
+    color: var(--standard-button-fill)
+}
+
+.toggle-button {
+    position: relative;
+    appearance: none;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: var(--strong-white);
+    outline: 1px solid var(--gray-backdrop);
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.096);
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.toggle-button::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background: var(--gray-backdrop);
+    border-radius: 100%;
+    left: 0.25rem;
+    top: 0.25rem;
+    transition: all 0.1s;
+}
+
+.toggle-button:checked::after {
+    background: var(--medium-turquoise);
+    left: 1.25rem;
+}
+
+input[type="text"] {
+    padding: 4px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    border: 1px solid #d1d4d8;
+    width: var(--text-input-width);
+    font-family: "Roboto", sans-serif;
+}
+
+input[type="text"]:focus, input[type="text"]:focus-visible {
+    outline: 1px solid rgb(109, 156, 255);
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.096);
+}
+
+input[type="text"].large-text-input {
+    width: calc(1.5 * var(--text-input-width));
+}
+
+input[type="text"].small-text-input {
+    width: calc(0.5 * var(--text-input-width));
+}
+
+label {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.input-field-container {
+    align-items: center;
+}
+
+.input-field-input {
+    flex: 1
+}
+
+.begin-end-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.begin-end-to {
+    text-align: center;
 }

@@ -6,7 +6,7 @@ import { CardHeader } from './CardHeader'
 export class EditGeneralCard extends React.Component {
   render() {
     return (
-      <div className="information-card">
+      <div className="information-card flex">
         <CardHeader name="General" deletable={false} />
         <InputField
           cardId="general"

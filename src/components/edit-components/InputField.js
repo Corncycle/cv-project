@@ -22,10 +22,23 @@ export class InputField extends React.Component {
   }
 
   render() {
+    this.classes = 'input-field-input'
+    if (this.props.size === 'large') {
+      this.classes = this.classes + ' large-text-input'
+    } else if (this.props.size === 'small') {
+      this.classes = this.classes + ' small-text-input'
+    }
+
     return (
-      <div>
-        <label htmlFor={this.inputId}>{this.props.label + ': '}</label>
-        <input id={this.inputId} type="text" onChange={this.editFunc}></input>
+      <div className="input-field-container">
+        {/* <label htmlFor={this.inputId}>{this.props.label + ': '}</label> */}
+        <input
+          id={this.inputId}
+          type="text"
+          onChange={this.editFunc}
+          className={this.classes}
+          placeholder={this.props.label}
+        ></input>
       </div>
     )
   }
@@ -35,4 +48,5 @@ InputField.propTypes = {
   cardId: PropTypes.string,
   label: PropTypes.string,
   changeFunc: PropTypes.func,
+  size: PropTypes.string,
 }

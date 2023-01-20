@@ -14,8 +14,8 @@ export class CardHeader extends React.Component {
       )
     }
     return (
-      <div>
-        <h2>{this.props.name}</h2>
+      <div className="flex card-header-container">
+        <h2 className="card-header-title">{this.props.name}</h2>
         {deleteButton}
       </div>
     )

@@ -7,7 +7,11 @@ export class DeleteButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.clickFunc}>Delete</button>
+    return (
+      <button className="standard-button" onClick={this.clickFunc}>
+        Delete
+      </button>
+    )
   }
 }
 
