@@ -11,11 +11,15 @@ export class PreviewScreen extends React.Component {
       <div className={'information-panel flex ' + this.props.className}>
         <div className="paper-container paper-preview flex">
           <PreviewGeneral data={this.props.entryData.general} />
-          <PreviewSectionHeader content="Education" />
+          {this.props.entryData.education.length > 0 && (
+            <PreviewSectionHeader content="Education" />
+          )}
           {this.props.entryData.education.map((ed) => {
             return <PreviewEducationCard key={ed.id} data={ed} />
           })}
-          <PreviewSectionHeader content="Experience" />
+          {this.props.entryData.experience.length > 0 && (
+            <PreviewSectionHeader content="Experience" />
+          )}
           {this.props.entryData.experience.map((ex) => {
             return <PreviewExperienceCard key={ex.id} data={ex} />
           })}
